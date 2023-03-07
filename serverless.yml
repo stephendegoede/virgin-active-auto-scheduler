@@ -1,0 +1,13 @@
+service: virgin-active-auto-scheduler
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  cronHandler:
+    handler: index.run
+    events:
+      # Invoke Lambda function every day at 20:05
+      - schedule: cron(5 20 * * * *)
