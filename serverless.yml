@@ -10,4 +10,4 @@ functions:
     handler: index.run
     events:
       # Invoke Lambda function every day at 20:05
-      - schedule: cron(5 20 * * * *)
+      - schedule: cron(5 18 * * ? *)
