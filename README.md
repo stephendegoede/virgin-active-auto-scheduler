@@ -1,6 +1,7 @@
-WIP
+###WIP
 
-TODO
- [ ] Add GCalendar support
- [ ] Add GMail support
- [ ] Refactor
+###TODO
+
+[ ] Add GCalendar support
+[ ] Add GMail support
+[ ] Refactor
