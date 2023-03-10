@@ -30,6 +30,6 @@ To deploy the app run
 
 ## TODO
 
-[] Add GCalendar support
-[] Add GMail support
-[] Refactor
+- Add GCalendar support
+- Add GMail support
+- Refactor
