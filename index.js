@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// Define environment variables
+// Update your booking preference here
 const memberIdentifier = '9103185163089';
 const allowedDaysOfWeek = [4, 5]; // 0 = Sunday && 6 = Saturday
 const eventToBook = 'Cycle';
