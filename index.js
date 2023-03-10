@@ -118,23 +118,7 @@ const scheduleEvents = async () => {
         console.log(bookingInfo);
 
         await axios
-          .post(userBookingEndpoint, {
-            action: 'create',
-            CalendarEventId: eventToBook.CalendarEventId,
-            EventName: eventToBook.EventName,
-            clubId: preferredClub,
-            StartTime: eventToBook.StartTime,
-            EndTime: eventToBook.EndTime,
-            PersonnelName: eventToBook.PersonnelName,
-            Studio: eventToBook.LocationName,
-            ClubName: eventToBook.ClubName,
-            Name: name,
-            FullDate: eventToBook.Date,
-            token,
-            email,
-            comms_preferences: '1',
-            clubId,
-          })
+          .post(userBookingEndpoint, bookingInfo)
           .then(() => {
             console.log('Event successfully booked');
           })
