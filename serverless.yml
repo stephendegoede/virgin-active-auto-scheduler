@@ -9,6 +9,10 @@ provider:
 functions:
   cronHandler:
     handler: index.run
+    environment:
+      STEPHENDG: ${env:STEPHENDG}
+      KATE: ${env:KATE}
+      TRISTAN: ${env:TRISTAN}
     events:
       # Invoke Lambda function every day at 20:05
       - schedule: cron(5 18 * * ? *)
