@@ -1,21 +1,93 @@
 import axios from 'axios';
 
-// Update your booking preference here
-const memberIdentifier = '9103185163089';
-const allowedDaysOfWeek = [4, 5]; // 0 = Sunday && 6 = Saturday
-const eventToBook = 'Cycle';
-const earliestStartTime = '05:00:00';
-const latestEndTime = '07:30:00';
-const dayOfMonthToBook = new Date().getDate() + 8;
-const clubId = 506; // Virgin Active Point
+const bookingsToMake = [
+  {
+    name: 'stephendg',
+    id_number: '9103185163089',
+    days_of_week: [4, 5],
+    event: 'cycle',
+    earliest_start_time: '05:00:00',
+    latest_end_time: '07:30:00',
+    days_to_book_in_advance: 8,
+    club_id: 506,
+  },
+  {
+    name: 'kate',
+    id_number: '9305240079081',
+    days_of_week: [4, 5],
+    event: 'cycle',
+    earliest_start_time: '06:15:00',
+    latest_end_time: '07:00:00',
+    days_to_book_in_advance: 8,
+    club_id: 506,
+  },
+  {
+    name: 'tristan',
+    id_number: '9209035441086',
+    days_of_week: [4, 5],
+    event: 'cycle',
+    earliest_start_time: '06:15:00',
+    latest_end_time: '07:00:00',
+    days_to_book_in_advance: 8,
+    club_id: 506,
+  },
+];
 
 // Define the API endpoints
 const validateUserCardIdEndpoint = 'https://my.virginactive.co.za/scripts/validate_user_card_id.php';
 const userBookingEndpoint = 'https://my.virginactive.co.za/scripts/booking.php';
 const timetableBookingsEndpoint = 'https://my.virginactive.co.za/scripts/timetable_bookings.php';
 
-const scheduleEvents = async () => {
-  console.log('Starting auto scheduler');
+// const toJSON = ({ idNumber, daysOfWeek, event, earliestStartTime, latestEndTime, daysToBookInAdvance, clubId }) => {
+//   return {
+//     id_number: idNumber,
+//     days_of_week: daysOfWeek,
+//     event,
+//     earliest_start_time: earliestStartTime,
+//     latest_end_time: latestEndTime,
+//     days_to_book_in_advance: daysToBookInAdvance,
+//     club_id: clubId,
+//   };
+// };
+
+const fromJSON = ({
+  name,
+  id_number,
+  days_of_week,
+  event,
+  earliest_start_time,
+  latest_end_time,
+  days_to_book_in_advance,
+  club_id,
+}) => {
+  return {
+    name,
+    idNumber: id_number,
+    daysOfWeek: days_of_week,
+    event,
+    earliestStartTime: earliest_start_time,
+    latestEndTime: latest_end_time,
+    daysToBookInAdvance: days_to_book_in_advance,
+    clubId: club_id,
+  };
+};
+
+const scheduleEvents = async ({
+  name,
+  idNumber,
+  daysOfWeek,
+  event,
+  earliestStartTime,
+  latestEndTime,
+  daysToBookInAdvance,
+  clubId,
+}) => {
+  const memberIdentifier = idNumber;
+  const allowedDaysOfWeek = daysOfWeek; // 0 = Sunday && 6 = Saturday
+  const eventToBook = event;
+  const dayOfMonthToBook = new Date().getDate() + daysToBookInAdvance;
+
+  console.log(`Starting auto scheduler for ${name}`);
   try {
     console.log('Fetching the login token');
     const {
@@ -138,6 +210,8 @@ const scheduleEvents = async () => {
 
 export const run = async (event, context) => {
   const time = new Date();
-  await scheduleEvents();
+  for (const booking of bookingsToMake) {
+    await scheduleEvents(fromJSON(booking));
+  }
   console.log(`Your cron function "${context.functionName}" ran at ${time}`);
 };
