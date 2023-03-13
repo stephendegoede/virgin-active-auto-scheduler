@@ -1,5 +1,6 @@
 service: virgin-active-auto-scheduler
 frameworkVersion: '3'
+useDotenv: true
 
 provider:
   name: aws

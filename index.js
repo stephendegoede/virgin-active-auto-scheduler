@@ -3,8 +3,8 @@ import axios from 'axios';
 const bookingsToMake = [
   {
     name: 'stephendg',
-    id_number: '9103185163089',
-    days_of_week: [4, 5],
+    id_number: process.env.STEPHENDG,
+    days_of_week: [4, 5], // 0 = Sunday && 6 = Saturday
     event: 'cycle',
     earliest_start_time: '05:00:00',
     latest_end_time: '07:30:00',
@@ -13,8 +13,8 @@ const bookingsToMake = [
   },
   {
     name: 'kate',
-    id_number: '9305240079081',
-    days_of_week: [4, 5],
+    id_number: process.env.KATE,
+    days_of_week: [2, 5], // 0 = Sunday && 6 = Saturday
     event: 'cycle',
     earliest_start_time: '06:15:00',
     latest_end_time: '07:00:00',
@@ -23,8 +23,8 @@ const bookingsToMake = [
   },
   {
     name: 'tristan',
-    id_number: '9209035441086',
-    days_of_week: [4, 5],
+    id_number: process.env.TRISTAN,
+    days_of_week: [2, 5], // 0 = Sunday && 6 = Saturday
     event: 'cycle',
     earliest_start_time: '06:15:00',
     latest_end_time: '07:00:00',
@@ -83,7 +83,7 @@ const scheduleEvents = async ({
   clubId,
 }) => {
   const memberIdentifier = idNumber;
-  const allowedDaysOfWeek = daysOfWeek; // 0 = Sunday && 6 = Saturday
+  const allowedDaysOfWeek = daysOfWeek;
   const eventToBook = event;
   const dayOfMonthToBook = new Date().getDate() + daysToBookInAdvance;
 
