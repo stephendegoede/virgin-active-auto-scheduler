@@ -14,7 +14,7 @@ const bookingsToMake = [
   {
     name: 'kate',
     id_number: process.env.KATE,
-    days_of_week: [2, 5], // 0 = Sunday && 6 = Saturday
+    days_of_week: [2, 4], // 0 = Sunday && 6 = Saturday
     event: 'cycle',
     earliest_start_time: '06:15:00',
     latest_end_time: '07:00:00',
@@ -24,7 +24,7 @@ const bookingsToMake = [
   {
     name: 'tristan',
     id_number: process.env.TRISTAN,
-    days_of_week: [2, 5], // 0 = Sunday && 6 = Saturday
+    days_of_week: [2, 4], // 0 = Sunday && 6 = Saturday
     event: 'cycle',
     earliest_start_time: '06:15:00',
     latest_end_time: '07:00:00',
